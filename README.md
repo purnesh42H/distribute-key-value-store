@@ -32,12 +32,12 @@ It is an in-memory distributed key-value (KV) store using GO programming languag
   - Encoding is a type of value. For example, integer, string, binary etc.
   - Key is always stored as string. See example request:
   ```console
-  curl -H "Content-Type: application/json" -d '{"key": "d", "value": "onto", "encoding": "string"}' http://localhost:5100/set- 
+  curl -H "Content-Type: application/json" -d '{"key": "d", "value": "onto", "encoding": "string"}' http://localhost:5100/set 
   ```
 - GET - http://localhost:PORT/get/{key}
   - Key is the parameter for which you want the value
   - It returns the value of the key
-  - You can test in browser. For example; once the servers are spawned, try http://localhost:<PORT>/get/a
+  - You can test in browser. For example; once the servers are spawned, try http://localhost:PORT/get/a
   
 # Attributions
 - https://thenewstack.io/make-a-restful-json-api-go/ for api boilerplate of go
