@@ -22,6 +22,15 @@ It is an in-memory distributed key-value (KV) store using GO programming languag
 - Run ./run.sh
 - Once the servers are spawned, each server will have seed keys a and b.
 
+# Node Architecture
+ - My architecture will have n fixed nodes once the servers are spawned
+ - For this version, it is assumed that there won't more or less servers than n
+ - Each server behaves as proxy.
+    - Whenever a request comes, a hash value is computed based on the key using "hash/fnv" of go.
+    - A module of hash gives the server id for that key
+    - The request is forwarded to that server
+  - It stores the key-value pair in memory
+
 # Endpoints
 - SET - http://localhost:PORT/set
   - It creates/updates the key value pair in the store
@@ -42,3 +51,12 @@ It is an in-memory distributed key-value (KV) store using GO programming languag
 # Attributions
 - https://thenewstack.io/make-a-restful-json-api-go/ for api boilerplate of go
 - https://stackoverflow.com/questions/13582519/how-to-generate-hash-number-of-a-string-in-go for hash function
+
+# Limitations
+- The set endpoint doesn't accept array of key-value pairs
+- You have to manually stop the spawned servers if you wish to. For e.g
+  ```console
+  lsof -i:PORT
+  kill -9 PID
+  ```
+- The server will crash(not completely) if you try to retreive the key which is not present in store.
